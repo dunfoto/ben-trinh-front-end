@@ -41,7 +41,7 @@ const ImgMediaCard = React.memo((props: ImgMediaCardProps) => {
                 </CardContent>
             </CardActionArea>
             <CardActions>
-                <a href={url} target="_blank" style={{ textDecoration: 'none' }}>
+                <a href={url} target="_blank" rel="noopener noreferrer" style={{ textDecoration: 'none' }}>
                     <Button size="small" color="primary">
                         Go to this site
                     </Button>

@@ -1,6 +1,6 @@
 import React from 'react';
 import SubComponent from 'components/SubComponent';
-import { Image, Table } from 'react-bootstrap';
+import { Table } from 'react-bootstrap';
 import ProcessBar from 'components/ProcessSkill';
 
 const HomePagePages = React.memo(() => {
@@ -100,6 +100,7 @@ const HomePagePages = React.memo(() => {
                             width="90%"
                             height="250px"
                             className="img-avatar-resume"
+                            alt="Avatar Resume"
                         />
                     </div>
                     <div className="row justify-content-end pr-4 pl-4 pb-0 pt-2">
