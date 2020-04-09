@@ -3,7 +3,6 @@ import { Route, Switch } from 'react-router-dom';
 import loading from 'assets/img/loading.gif';
 
 const HomePage = lazy(() => import('pages/homePage'));
-const ContactMe = lazy(() => import('pages/contactMe'));
 const Resume = lazy(() => import('pages/resume'));
 
 const Routes = React.memo(() => {
@@ -17,7 +16,6 @@ const Routes = React.memo(() => {
         >
             <Switch>
                 <Route exact path="/" component={HomePage} />
-                <Route exact path="/contact-me" component={ContactMe} />
                 <Route exact path="/resume" component={Resume} />
             </Switch>
         </Suspense>

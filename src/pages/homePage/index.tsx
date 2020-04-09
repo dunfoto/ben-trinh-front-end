@@ -1,7 +1,6 @@
 import React from 'react';
 import { Theme, createStyles, makeStyles } from '@material-ui/core/styles';
-import { Carousel } from 'react-bootstrap';
-import { Grid, GridList, GridListTile, Typography } from '@material-ui/core';
+import { Grid, GridList, GridListTile } from '@material-ui/core';
 import listImage from 'data/listImg.json';
 import Card from 'components/Card';
 import imgs from 'data/imgsProj.json';
@@ -16,7 +15,7 @@ const useStyles = makeStyles((theme: Theme) =>
             backgroundColor: theme.palette.background.paper,
         },
         gridList: {
-            width: 500,
+            width: '100%',
             height: 'auto',
         },
     }),
