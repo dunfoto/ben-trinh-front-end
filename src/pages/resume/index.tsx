@@ -98,6 +98,7 @@ const HomePagePages = React.memo(() => {
                         <Image
                             src="https://scontent-sin6-2.xx.fbcdn.net/v/t1.0-9/84634756_1853236188141892_8909589263876620288_o.jpg?_nc_cat=105&_nc_sid=85a577&_nc_ohc=8hon9Zw00LkAX9Tmw6l&_nc_ht=scontent-sin6-2.xx&oh=b5b9d48db180b03d5c44de3d484ecc70&oe=5EB17B5F"
                             width="90%"
+                            height="auto"
                         />
                     </div>
                     <div className="row justify-content-end pr-4 pl-4 pb-0 pt-2">
