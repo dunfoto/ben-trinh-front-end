@@ -4,6 +4,7 @@ import { Carousel } from 'react-bootstrap';
 import { Grid, GridList, GridListTile, Typography } from '@material-ui/core';
 import listImage from 'data/listImg.json';
 import Card from 'components/Card';
+import imgs from 'data/imgsProj.json';
 
 const useStyles = makeStyles((theme: Theme) =>
     createStyles({
@@ -78,19 +79,19 @@ const HomePagePages = React.memo(() => {
                 className="mt-4"
             >
                 <Card
-                    img="https://lh4.googleusercontent.com/mGliJjUxZtUNmJhY9mLofLvlmN0W0_URgtpjRYpa0HpoIphRCH9HY-i6-xVBMYadnA95rIM9wf6LBH1RXx3B=w1885-h981-rw"
+                    img={imgs.gofix}
                     title="GOfix"
                     description="Description GOfix"
                     url="https://www.gofix.com.sg/"
                 />
                 <Card
-                    img="https://lh5.googleusercontent.com/2rWRLnbtZkZW_L1xkGs_q5Q4lkXepUapIci3uMSUsO7uhIWb2Q_1UzJV0Ujl5-j_ctbppqWYToHsODFm_HP1=w1885-h981-rw"
+                    img={imgs.merchfoundry}
                     title="MerchFoundry"
                     description="Description MerchFoundry"
                     url="https://merchfoundry.com/"
                 />
                 <Card
-                    img="https://lh6.googleusercontent.com/M9A9WPV30JD-dqAzHO_1Na-CUuK672Xw6KR7ey7vb3pH5sAEm5ntk_mmnNcSy5kjNozavOdLV9tApMcRZIhK=w1885-h981-rw"
+                    img={imgs.los}
                     title="TheLivingOS"
                     description="Description TheLivingOS"
                     url="https://los-web.vinova.sg/"
