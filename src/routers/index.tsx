@@ -1,16 +1,26 @@
-import React from 'react';
+import React, { lazy, Suspense } from 'react';
 import { Route, Switch } from 'react-router-dom';
-import HomePage from 'pages/homePage';
-import ContactMe from 'pages/contactMe';
-import Resume from 'pages/resume';
+import loading from 'assets/img/loading.gif';
+
+const HomePage = lazy(() => import('pages/homePage'));
+const ContactMe = lazy(() => import('pages/contactMe'));
+const Resume = lazy(() => import('pages/resume'));
 
 const Routes = React.memo(() => {
     return (
-        <Switch>
-            <Route exact path="/" component={HomePage} />
-            <Route exact path="/contact-me" component={ContactMe} />
-            <Route exact path="/resume" component={Resume} />
-        </Switch>
+        <Suspense
+            fallback={
+                <div className="grid-full-height">
+                    <img src={loading} alt="loading" />
+                </div>
+            }
+        >
+            <Switch>
+                <Route exact path="/" component={HomePage} />
+                <Route exact path="/contact-me" component={ContactMe} />
+                <Route exact path="/resume" component={Resume} />
+            </Switch>
+        </Suspense>
     )
 });
 

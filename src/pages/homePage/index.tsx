@@ -1,10 +1,32 @@
 import React from 'react';
+import { Theme, createStyles, makeStyles } from '@material-ui/core/styles';
 import { Carousel } from 'react-bootstrap';
+import { Grid, GridList, GridListTile, Typography } from '@material-ui/core';
+import listImage from 'data/listImg.json';
+import Card from 'components/Card';
+
+const useStyles = makeStyles((theme: Theme) =>
+    createStyles({
+        root: {
+            display: 'flex',
+            flexWrap: 'wrap',
+            justifyContent: 'space-around',
+            overflow: 'hidden',
+            backgroundColor: theme.palette.background.paper,
+        },
+        gridList: {
+            width: 500,
+            height: 'auto',
+        },
+    }),
+);
 
 const HomePagePages = React.memo(() => {
+    const classes = useStyles();
+
     return (
         <div className="container c-container-carousel">
-            <Carousel>
+            {/* <Carousel>
                 <Carousel.Item>
                     <img
                         className="d-block h-100 image-carousel"
@@ -26,7 +48,55 @@ const HomePagePages = React.memo(() => {
                         alt="Third slide"
                     />
                 </Carousel.Item>
-            </Carousel>
+            </Carousel> */}
+            <Grid
+                container
+                spacing={1}
+                alignItems="center"
+                justify="center"
+            >
+                <Grid item sm={6}>
+                    <h3 className="style-font-introduce">Introduce my self</h3>
+                </Grid>
+                <Grid item sm={6}>
+                    <div className={classes.root}>
+                        <GridList spacing={2} className={classes.gridList} cols={3}>
+                            {listImage.map((tile) => (
+                                <GridListTile key={tile.src} cols={tile.cols || 1}>
+                                    <img src={tile.src} alt={tile.src} />
+                                </GridListTile>
+                            ))}
+                        </GridList>
+                    </div>
+                </Grid>
+            </Grid>
+            <hr />
+            <Grid
+                container
+                alignContent="center"
+                justify="center"
+                className="mt-4"
+            >
+                <Card
+                    img="https://lh4.googleusercontent.com/mGliJjUxZtUNmJhY9mLofLvlmN0W0_URgtpjRYpa0HpoIphRCH9HY-i6-xVBMYadnA95rIM9wf6LBH1RXx3B=w1885-h981-rw"
+                    title="GOfix"
+                    description="Description GOfix"
+                    url="https://www.gofix.com.sg/"
+                />
+                <Card
+                    img="https://lh5.googleusercontent.com/2rWRLnbtZkZW_L1xkGs_q5Q4lkXepUapIci3uMSUsO7uhIWb2Q_1UzJV0Ujl5-j_ctbppqWYToHsODFm_HP1=w1885-h981-rw"
+                    title="MerchFoundry"
+                    description="Description MerchFoundry"
+                    url="https://merchfoundry.com/"
+                />
+                <Card
+                    img="https://lh6.googleusercontent.com/M9A9WPV30JD-dqAzHO_1Na-CUuK672Xw6KR7ey7vb3pH5sAEm5ntk_mmnNcSy5kjNozavOdLV9tApMcRZIhK=w1885-h981-rw"
+                    title="TheLivingOS"
+                    description="Description TheLivingOS"
+                    url="https://los-web.vinova.sg/"
+                    ps="Development"
+                />
+            </Grid>
         </div>
     );
 });
