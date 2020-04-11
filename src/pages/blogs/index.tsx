@@ -1,16 +1,18 @@
 import React, { useEffect, useState } from 'react';
-import axios from 'axios';
+import axios from 'common/axios';
+import { makeStyles } from '@material-ui/core/styles';
+import { Typography, Button, Card, CardActionArea, CardActions, CardContent, CardMedia } from '@material-ui/core';
+import { BlogsProps } from 'common/type';
 
-interface BlogsProps {
-    _id: string;
-    __v: number;
-    title: string;
-    description: string;
-    createDate: string;
-    status: string;
-}
+const useStyles = makeStyles({
+    root: {
+        maxWidth: 345,
+        margin: '20px 20px'
+    },
+});
 
 const BlogsComponent = React.memo(() => {
+    const classes = useStyles();
     const [blogs, setBlogs] = useState<BlogsProps[]>([]);
 
     useEffect(() => {
@@ -18,20 +20,39 @@ const BlogsComponent = React.memo(() => {
     }, [])
 
     const loadBlog = async () => {
-        try {
-            const res = await axios.get('https://cors-anywhere.herokuapp.com/https://ben-trinh-api.herokuapp.com/blogs');
-            return setBlogs(res.data);
-        } catch (error) {
-            return Promise.reject(error);
-        }
+        const res = await axios.get('/blogs');
+        return setBlogs(res.data);
     }
+
     return (
         <div>
-            <button onClick={loadBlog}>Test</button>
             {blogs.map(blog => (
-                <div key={blog._id}>
-                    {blog.title}
-                </div>
+                <Card key={blog._id} className={classes.root}>
+                    <CardActionArea>
+                        <CardMedia
+                            component="img"
+                            alt={`img${blog._id}`}
+                            height="250"
+                            image={blog.previewImgTop}
+                            title="title"
+                        />
+                        <CardContent>
+                            <Typography gutterBottom variant="h5" component="h2">
+                                {blog.title}
+                            </Typography>
+                            <Typography variant="body2" color="textSecondary" component="p">
+                                {blog.summary}
+                            </Typography>
+                        </CardContent>
+                    </CardActionArea>
+                    <CardActions>
+                        <a href={`/blogs/${blog._id}`} style={{ textDecoration: 'none' }}>
+                            <Button size="small" color="primary">
+                                Go go go
+                            </Button>
+                        </a>
+                    </CardActions>
+                </Card>
             ))}
         </div>
     );
