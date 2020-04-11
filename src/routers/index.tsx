@@ -4,6 +4,7 @@ import loading from 'assets/img/loading.gif';
 
 const HomePage = lazy(() => import('pages/homePage'));
 const Resume = lazy(() => import('pages/resume'));
+const Blogs = lazy(() => import('pages/blogs'));
 
 const Routes = React.memo(() => {
     return (
@@ -17,6 +18,7 @@ const Routes = React.memo(() => {
             <Switch>
                 <Route exact path="/" component={HomePage} />
                 <Route exact path="/resume" component={Resume} />
+                <Route exact path="/blogs" component={Blogs} />
             </Switch>
         </Suspense>
     )
