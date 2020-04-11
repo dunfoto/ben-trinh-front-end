@@ -167,7 +167,7 @@ body {
 }
 
 .c-button-back {
-    position: absolute;
+    position: fixed;
     left: 10px;
-    top: 60px;
+    bottom: 10px;
 }

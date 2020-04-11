@@ -2,8 +2,9 @@ import React, { useEffect, useState } from 'react';
 import { BlogsProps } from 'common/type';
 import axios from 'common/axios';
 import { makeStyles } from '@material-ui/core/styles';
-import { Typography, CardContent, CardMedia } from '@material-ui/core';
+import { Typography, CardContent, CardMedia, Zoom } from '@material-ui/core';
 import { Link } from 'react-router-dom';
+import Waiting from 'components/Waiting';
 
 interface BlogDetailProps {
     match: {
@@ -52,36 +53,34 @@ const BlogDetail = React.memo((props: BlogDetailProps) => {
         }
     }
     return (
-        <div key={blog._id} className={classes.root}>
+        <div className="container">
             <Link to="/blogs" className="btn btn-primary rounded-circle c-button-back"><i className="fas fa-arrow-left"></i></Link>
-            {Boolean(blog.previewImgTop) && (
-                <CardMedia
-                    component="img"
-                    alt={`img${blog._id}`}
-                    image={blog.previewImgTop}
-                    title="title"
-                />
-            )}
-            <CardContent>
-                <Typography gutterBottom variant="h5" component="h2">
-                    {blog.title}
-                </Typography>
-                <Typography gutterBottom variant="h6" component="h4">
-                    {blog.summary}
-                </Typography>
-                <Typography variant="body2" color="textSecondary" component="p">
-                    <span dangerouslySetInnerHTML={{ __html: blog.description }} />
-                </Typography>
-            </CardContent>
-            {Boolean(blog.previewImgEnd) && (
-                <CardMedia
-                    component="img"
-                    alt={`img${blog._id}`}
-                    image={blog.previewImgEnd}
-                    title="title"
-                />
-            )}
-        </div >
+            <Waiting isOpen={blog._id === ""} />
+            <Zoom in={blog._id !== ""}>
+                <div key={blog._id} className={classes.root}>
+                    <CardContent>
+                        <Typography gutterBottom variant="h5" component="h2">
+                            {blog.title}
+                        </Typography>
+                        <i className="fas fa-calendar-alt mr-2"></i><i className="f-10">{blog.createDate}</i>
+                        <Typography gutterBottom variant="h6" component="h4">
+                            {blog.summary}
+                        </Typography>
+                        <Typography variant="body2" color="textSecondary" component="p">
+                            <span dangerouslySetInnerHTML={{ __html: blog.description }} />
+                        </Typography>
+                    </CardContent>
+                    {Boolean(blog.previewImgEnd) && (
+                        <CardMedia
+                            component="img"
+                            alt={`img${blog._id}`}
+                            image={blog.previewImgEnd}
+                            title="title"
+                        />
+                    )}
+                </div >
+            </Zoom>
+        </div>
     );
 });
 

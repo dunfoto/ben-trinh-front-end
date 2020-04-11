@@ -1,8 +1,11 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'common/axios';
+import { Link } from 'react-router-dom';
 import { makeStyles } from '@material-ui/core/styles';
-import { Typography, Button, Card, CardActionArea, CardActions, CardContent, CardMedia } from '@material-ui/core';
+import { Typography, Button, Card, CardActionArea, CardActions, CardContent, CardMedia, Zoom } from '@material-ui/core';
 import { BlogsProps } from 'common/type';
+import Waiting from 'components/Waiting';
+import defaultImg from 'assets/img/default.png';
 
 const useStyles = makeStyles({
     root: {
@@ -25,34 +28,37 @@ const BlogsComponent = React.memo(() => {
     }
 
     return (
-        <div>
+        <div className="container">
+            <Waiting isOpen={blogs.length === 0} />
             {blogs.map(blog => (
-                <Card key={blog._id} className={classes.root}>
-                    <CardActionArea>
-                        <CardMedia
-                            component="img"
-                            alt={`img${blog._id}`}
-                            height="250"
-                            image={blog.previewImgTop}
-                            title="title"
-                        />
-                        <CardContent>
-                            <Typography gutterBottom variant="h5" component="h2">
-                                {blog.title}
-                            </Typography>
-                            <Typography variant="body2" color="textSecondary" component="p">
-                                {blog.summary}
-                            </Typography>
-                        </CardContent>
-                    </CardActionArea>
-                    <CardActions>
-                        <a href={`/blogs/${blog._id}`} style={{ textDecoration: 'none' }}>
-                            <Button size="small" color="primary">
-                                Go go go
-                            </Button>
-                        </a>
-                    </CardActions>
-                </Card>
+                <Zoom key={blog._id} in={true}>
+                    <Card className={classes.root}>
+                        <CardActionArea>
+                            <CardMedia
+                                component="img"
+                                alt={`img${blog._id}`}
+                                height="250"
+                                image={blog.previewImgTop === "" ? defaultImg : blog.previewImgTop}
+                                title="title"
+                            />
+                            <CardContent>
+                                <Typography gutterBottom variant="h5" component="h2">
+                                    {blog.title}
+                                </Typography>
+                                <Typography variant="body2" color="textSecondary" component="p">
+                                    {blog.summary}
+                                </Typography>
+                            </CardContent>
+                        </CardActionArea>
+                        <CardActions>
+                            <Link to={`/blogs/${blog._id}`} style={{ textDecoration: 'none' }}>
+                                <Button size="small" color="primary">
+                                    Go go go
+                                </Button>
+                            </Link>
+                        </CardActions>
+                    </Card>
+                </Zoom>
             ))}
         </div>
     );
