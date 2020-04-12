@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 
 const NavBarComponent = React.memo(() => {
     return (
-        <Navbar bg="dark" variant="dark">
+        <Navbar className="fixed-top" bg="dark" variant="dark">
             <Link to="/" className="navbar-brand">BenTrinh</Link>
             <Navbar.Toggle aria-controls="basic-navbar-nav" />
             <Navbar.Collapse id="basic-navbar-nav">
